@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               TextSpan(
                                 text:
-                                isSignUpScreen ? " to Vcuisines" : " Back",
+                                    isSignUpScreen ? " to Vcuisines" : " Back",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
@@ -85,88 +85,92 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              Positioned(
-                top: size.height * 0.3,
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  height: size.height * 0.52,
-                  width: MediaQuery.of(context).size.width - 40,
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
-                            blurRadius: 15,
-                            spreadRadius: 5),
-                      ]),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Positioned.fill(
+                child: SafeArea(
+                  child: Center(
+                    child: AnimatedContainer(
+                      duration: Duration(microseconds: 3000),
+                      padding: EdgeInsets.all(20),
+                      width: MediaQuery.of(context).size.width - 40,
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                blurRadius: 15,
+                                spreadRadius: 5),
+                          ]),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isSignUpScreen = false;
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Đăng nhập",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: !isSignUpScreen
-                                        ? Colors.black
-                                        : Colors.black12,
-                                  ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isSignUpScreen = false;
+                                  });
+                                },
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Đăng nhập",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: !isSignUpScreen
+                                            ? Colors.black
+                                            : Colors.black12,
+                                      ),
+                                    ),
+                                    if (!isSignUpScreen)
+                                      Container(
+                                        margin: EdgeInsets.only(top: 3),
+                                        height: 2,
+                                        width: 55,
+                                        color: kPrimaryColor,
+                                      ),
+                                  ],
                                 ),
-                                if (!isSignUpScreen)
-                                  Container(
-                                    margin: EdgeInsets.only(top: 3),
-                                    height: 2,
-                                    width: 55,
-                                    color: kPrimaryColor,
-                                  ),
-                              ],
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isSignUpScreen = true;
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Đăng ký",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: isSignUpScreen
-                                        ? Colors.black
-                                        : Colors.black12,
-                                  ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isSignUpScreen = true;
+                                  });
+                                },
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Đăng ký",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: isSignUpScreen
+                                            ? Colors.black
+                                            : Colors.black12,
+                                      ),
+                                    ),
+                                    if (isSignUpScreen)
+                                      Container(
+                                        margin: EdgeInsets.only(top: 3),
+                                        height: 2,
+                                        width: 55,
+                                        color: kPrimaryColor,
+                                      ),
+                                  ],
                                 ),
-                                if (isSignUpScreen)
-                                  Container(
-                                    margin: EdgeInsets.only(top: 3),
-                                    height: 2,
-                                    width: 55,
-                                    color: kPrimaryColor,
-                                  ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                          if (isSignUpScreen) SignUpDetail(),
+                          if (!isSignUpScreen) LoginDetail(),
                         ],
                       ),
-                      if (isSignUpScreen) SignUpDetail(),
-                      if (!isSignUpScreen) LoginDetail(),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -224,9 +228,9 @@ class _LoginScreenState extends State<LoginScreen> {
 // Login bằng facebook, google
   TextButton buildTextButtonSocial(
       {IconData iconData,
-        String title,
-        Color backgroundColor,
-        GestureTapCallback press}) {
+      String title,
+      Color backgroundColor,
+      GestureTapCallback press}) {
     return TextButton(
       onPressed: press,
       style: TextButton.styleFrom(
