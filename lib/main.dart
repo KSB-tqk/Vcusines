@@ -30,8 +30,8 @@ Future<void> main() async {
   // bool check = prefs.getBool('checkAppInstalled') ?? true;
   // await prefs.setBool('checkAppInstalled', true);
   runApp(MyApp(
-    // check: check,
-  ));
+      // check: check,
+      ));
 }
 
 class MyApp extends StatelessWidget {
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
           TopSouthFood.id: (context) =>
               TopSouthFood(), // details top south food
         },
-        initialRoute:  SplashScreen.id,
+        initialRoute: SplashScreen.id,
       ),
     );
   }

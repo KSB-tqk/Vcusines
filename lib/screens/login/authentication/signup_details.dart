@@ -29,20 +29,21 @@ class _SignUpDetailState extends State<SignUpDetail> {
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthenticationService>(context);
     bool checkSnackBarShow = false;
+    Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(top: 10),
       child: Form(
         key: _formKey,
         child: Column(
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: size.height * 0.01),
             // Nhập tài khoản email
             TextFormField(
               controller: emailController,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               validator: (val) =>
-              val.isNotEmpty ? null : "Email không được để trống!",
+                  val.isNotEmpty ? null : "Email không được để trống!",
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.mail_rounded,
@@ -73,16 +74,18 @@ class _SignUpDetailState extends State<SignUpDetail> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: size.height * 0.01,
             ),
             // Nhập mật khẩu
             TextFormField(
               controller: passwordController,
               obscureText: true,
-              inputFormatters: [FilteringTextInputFormatter.deny(new RegExp('[\\.|\\,| -]'))],
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(new RegExp('[\\.|\\,| -]'))
+              ],
               textInputAction: TextInputAction.next,
               validator: (val) =>
-              val.length < 6 ? "Mật khẩu phải lớn hơn 6 kí tự!" : null,
+                  val.length < 6 ? "Mật khẩu phải lớn hơn 6 kí tự!" : null,
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.lock_rounded,
@@ -113,12 +116,14 @@ class _SignUpDetailState extends State<SignUpDetail> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: size.height * 0.01,
             ),
             TextFormField(
               controller: confirmPassController,
               keyboardType: TextInputType.text,
-              inputFormatters: [FilteringTextInputFormatter.deny(new RegExp('[\\.|\\,| -]'))],
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(new RegExp('[\\.|\\,| -]'))
+              ],
               obscureText: true,
               textInputAction: TextInputAction.done,
               validator: (val) => val != passwordController.text
@@ -154,11 +159,31 @@ class _SignUpDetailState extends State<SignUpDetail> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: size.height * 0.01,
+            ),
+            Text(
+              "Đăng ký ngay!",
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Text(
+              "Tận hưởng ẩm thực đất Việt!",
+              style: TextStyle(
+                fontSize: 14,
+                color: kPrimaryColor,
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.02,
             ),
             Container(
-              width: 200,
-              height: 50,
+              width: size.width * 0.5,
+              height: size.height * 0.065,
               child: OutlinedButton(
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
@@ -170,17 +195,17 @@ class _SignUpDetailState extends State<SignUpDetail> {
                       checkSnackBarShow = true;
                       await ScaffoldMessenger.of(context)
                           .showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            '$messege',
-                            style: TextStyle(
-                              color: Colors.white,
+                            SnackBar(
+                              content: Text(
+                                '$messege',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              backgroundColor: kPrimaryColor,
+                              duration: const Duration(milliseconds: 3000),
                             ),
-                          ),
-                          backgroundColor: kPrimaryColor,
-                          duration: const Duration(milliseconds: 3000),
-                        ),
-                      )
+                          )
                           .closed;
                       checkSnackBarShow = false;
                     }
