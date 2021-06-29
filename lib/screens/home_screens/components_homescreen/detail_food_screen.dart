@@ -4,7 +4,7 @@ import 'package:vcusines/components/comments.dart';
 import 'package:vcusines/components/constants.dart';
 import 'package:vcusines/components/food.dart';
 import 'package:vcusines/notifier/authentication.dart';
-import 'package:vcusines//notifier/comment_notifer.dart';
+import 'package:vcusines/notifier/comment_notifer.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:like_button/like_button.dart';
 import 'package:timeago/timeago.dart' as timeago;

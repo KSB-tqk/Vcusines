@@ -21,7 +21,7 @@ import 'package:vcusines/screens/splash/splash_screen.dart';
 import 'package:vcusines/screens/user_screen/user_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
           TopSouthFood.id: (context) =>
               TopSouthFood(), // details top south food
         },
-        initialRoute: SplashScreen.id,
+        initialRoute:  SplashScreen.id,
       ),
     );
   }

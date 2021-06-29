@@ -1,15 +1,15 @@
-class TopFood {
-  List<String> listTopFood;
+class SouthFood {
+  List<String> listSouthFood;
 
-  TopFood({this.listTopFood});
+  SouthFood({this.listSouthFood});
 
-  TopFood.fromJson(Map<String, dynamic> json) {
-    listTopFood = json['ListTopFood'].cast<String>();
+  SouthFood.fromJson(Map<String, dynamic> json) {
+    listSouthFood = json['ListSouthFood'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ListTopFood'] = this.listTopFood;
+    data['ListSouthFood'] = this.listSouthFood;
     return data;
   }
 }

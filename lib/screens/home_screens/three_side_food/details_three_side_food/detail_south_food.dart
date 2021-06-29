@@ -4,13 +4,13 @@ import 'package:vcusines/notifier/food_notifier.dart';
 import 'package:vcusines/screens/home_screens/components_homescreen/food_item.dart';
 import 'package:provider/provider.dart';
 
-class TopNorthFood extends StatelessWidget {
-  static String id = 'NorthFood';
-  const TopNorthFood({key}) : super(key: key);
+class TopSouthFood extends StatelessWidget {
+  static String id = 'SouthFood';
+  const TopSouthFood({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    FoodNotifier topNorthFoodNotifier = Provider.of<FoodNotifier>(context);
+    FoodNotifier topSouthFoodNotifier = Provider.of<FoodNotifier>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +26,7 @@ class TopNorthFood extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         centerTitle: true,
         title: Text(
-          'Ẩm thực miền Bắc!',
+          'Ẩm thực miền Nam!',
           style: TextStyle(
             color: Colors.white,
             fontStyle: FontStyle.italic,
@@ -36,9 +36,9 @@ class TopNorthFood extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.only(top: 5, left: 10, right: 10),
         child: ListView.builder(
-          itemCount: topNorthFoodNotifier.northFoodList.length,
+          itemCount: topSouthFoodNotifier.southFoodList.length,
           itemBuilder: (BuildContext context, int index) {
-            final i = topNorthFoodNotifier.northFoodList[index];
+            final i = topSouthFoodNotifier.southFoodList[index];
             return FoodItem(
               food: i,
             );
