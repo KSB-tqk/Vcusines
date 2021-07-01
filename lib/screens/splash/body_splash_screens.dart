@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vcusines/components/constants.dart';
 import 'package:vcusines/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Body extends StatefulWidget {
   const Body({key}) : super(key: key);
@@ -78,8 +77,8 @@ class _BodyState extends State<Body> {
                             width: double.infinity,
                             height: size.height * 0.08,
                             child: TextButton(
-                              onPressed: () async {
-                                Navigator.pushNamed(
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(
                                     context, AuthenticationWrapper.id);
                               },
                               child: Text(

@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SafeArea(
                   child: Center(
                     child: AnimatedContainer(
-                      duration: Duration(microseconds: 3000),
+                      duration: Duration(microseconds: 200),
                       padding: EdgeInsets.all(20),
                       width: MediaQuery.of(context).size.width - 40,
                       margin: EdgeInsets.symmetric(horizontal: 20),

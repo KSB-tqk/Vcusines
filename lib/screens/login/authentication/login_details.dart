@@ -184,7 +184,7 @@ class _LoginDetailState extends State<LoginDetail> {
                     backgroundColor: kPrimaryColor),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: size.height * 0.02),
             TextButton(
                 onPressed: () {
                   Alert(
