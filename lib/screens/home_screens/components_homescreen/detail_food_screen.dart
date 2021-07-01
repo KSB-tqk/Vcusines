@@ -118,8 +118,8 @@ class DetailFood extends StatelessWidget {
                                       size: 35,
                                     );
                                   },
-                                  onTap: (bool) => onClickFavorFood(
-                                      bool, context, food.idFood),
+                                  onTap: (isLike) => onClickFavorFood(
+                                      isLike, context, food.idFood),
                                 ),
                               ),
                               IconButton(
@@ -135,14 +135,14 @@ class DetailFood extends StatelessWidget {
                                     context: context,
                                     builder: (context) => SingleChildScrollView(
                                         child: BuildSheet(
-                                          food: food,
-                                        )),
+                                      food: food,
+                                    )),
                                   );
                                 },
                                 icon: Icon(
                                   Icons.message_rounded,
                                   size: 35,
-                                  color: Colors.blueAccent,
+                                  color: Colors.grey[400],
                                 ),
                               ),
                             ],
@@ -217,21 +217,21 @@ class DetailFood extends StatelessWidget {
                               for (int i = 0; i < step.length; i++)
                                 i % 2 == 0
                                     ? TextSpan(
-                                  text: step[i],
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
+                                        text: step[i],
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
                                     : TextSpan(
-                                  text:
-                                  "${step[i].replaceAll("% ", '\n\n')}",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                  ),
-                                ),
+                                        text:
+                                            "${step[i].replaceAll("% ", '\n\n')}",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
                             ],
                           ),
                         ),
@@ -259,7 +259,7 @@ class DetailFood extends StatelessWidget {
   Future<bool> onClickFavorFood(
       bool isLike, BuildContext context, String idFood) async {
     final authentication =
-    Provider.of<AuthenticationService>(context, listen: false);
+        Provider.of<AuthenticationService>(context, listen: false);
     if (!isLike) {
       authentication.favoriteFood.listIdFood.add(idFood);
     } else {

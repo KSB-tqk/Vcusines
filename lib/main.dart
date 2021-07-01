@@ -148,7 +148,7 @@ class AuthenticationWrapper extends StatelessWidget {
                                   height: 20,
                                 ),
                                 Text(
-                                  'Đợi tí nha!',
+                                  'Đợi tí nha...',
                                   style: TextStyle(
                                     color: kPrimaryColor,
                                     fontSize: 20,

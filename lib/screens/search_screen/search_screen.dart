@@ -20,10 +20,18 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            padding: EdgeInsets.only(left: 20),
+            onPressed: null,
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
+          ),
           backgroundColor: Colors.white,
           title: Text("Kho ẩm thực".toUpperCase(),
               style:
-              TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)),
+                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold)),
           centerTitle: true,
         ),
         body: Stack(
@@ -69,13 +77,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 children: [
                   Expanded(
                       child: TextField(
-                        controller: searchTEC,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                            hintText: "Tìm kiếm món ăn theo tên.",
-                            hintStyle: TextStyle(color: Colors.white54),
-                            border: InputBorder.none),
-                      )),
+                    controller: searchTEC,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        hintText: "Tìm kiếm món ăn theo tên.",
+                        hintStyle: TextStyle(color: Colors.white54),
+                        border: InputBorder.none),
+                  )),
                   GestureDetector(
                     onTap: () {
                       Provider.of<FoodNotifier>(context, listen: false)

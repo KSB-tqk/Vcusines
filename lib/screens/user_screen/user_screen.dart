@@ -40,6 +40,14 @@ class _UserScreenState extends State<UserScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          padding: EdgeInsets.only(left: 20),
+          onPressed: null,
+          icon: Icon(
+            Icons.favorite,
+            color: Colors.white,
+          ),
+        ),
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
@@ -183,9 +191,9 @@ class _UserScreenState extends State<UserScreen> {
                               obscureText: true,
                               textInputAction: TextInputAction.next,
                               validator: (check) => check =
-                              checkCurrentPasswordValid
-                                  ? null
-                                  : "Mật khẩu hiện tại không chính xác!",
+                                  checkCurrentPasswordValid
+                                      ? null
+                                      : "Mật khẩu hiện tại không chính xác!",
                               decoration: InputDecoration(
                                 icon: Icon(
                                   Icons.lock_clock_rounded,
@@ -246,12 +254,15 @@ class _UserScreenState extends State<UserScreen> {
                               controller: confirmNewPassWordController,
                               obscureText: true,
                               keyboardType: TextInputType.text,
-                              inputFormatters: [FilteringTextInputFormatter.deny(new RegExp('[\\.|\\,| -]'))],
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(
+                                    new RegExp('[\\.|\\,| -]'))
+                              ],
                               textInputAction: TextInputAction.done,
                               validator: (val) =>
-                              val != newPassWordController.text
-                                  ? "Xác nhận mật khẩu không chính xác!"
-                                  : null,
+                                  val != newPassWordController.text
+                                      ? "Xác nhận mật khẩu không chính xác!"
+                                      : null,
                               decoration: InputDecoration(
                                 icon: Icon(
                                   Icons.check_circle,
@@ -281,8 +292,8 @@ class _UserScreenState extends State<UserScreen> {
                           color: kPrimaryColor,
                           onPressed: () async {
                             checkCurrentPasswordValid =
-                            await authentication.validateCurrentPassword(
-                                passWordController.text);
+                                await authentication.validateCurrentPassword(
+                                    passWordController.text);
                             if (_formKey.currentState.validate() &&
                                 checkCurrentPasswordValid) {
                               await authentication
@@ -291,18 +302,18 @@ class _UserScreenState extends State<UserScreen> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Thay đổi mật khẩu thành công!',
-                                    style: TextStyle(
-                                      color: Colors.white,
+                                    SnackBar(
+                                      content: Text(
+                                        'Thay đổi mật khẩu thành công!',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      backgroundColor: kPrimaryColor,
+                                      duration:
+                                          const Duration(milliseconds: 2000),
                                     ),
-                                  ),
-                                  backgroundColor: kPrimaryColor,
-                                  duration:
-                                  const Duration(milliseconds: 2000),
-                                ),
-                              )
+                                  )
                                   .closed;
                             }
                           },
