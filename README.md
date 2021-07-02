@@ -51,10 +51,7 @@ Cho phép người dùng bình luận về món ăn, hiển thị thông tin bì
 
 ## License
 
-VCuisines is released under the Apache License 2.0. Copyright [2021] [VCuisines]
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+VCuisines is released under the Apache License 2.0. Copyright [2021] [See LICENSE](https://github.com/KSB-tqk/Vcusines/blob/master/LICENSE) for details
 
 
 
