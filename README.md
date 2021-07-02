@@ -25,7 +25,7 @@ Cho phép người dùng bình luận về món ăn, hiển thị thông tin bì
 - iOS 13+ / macOS 10.15+ / watchOS 6+ / tvOS 13+
 - Xcode 11.0+
 - Swift 5+
-- Android (không yêu cầu - 7+)
+- Android (không yêu cầu - recommended 7+)
 
 ## Thư viện và công nghệ
 
