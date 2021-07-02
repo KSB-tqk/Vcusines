@@ -20,6 +20,7 @@ class _LoginDetailState extends State<LoginDetail> {
   final _formKey = GlobalKey<FormState>();
   String _email;
   final auth = FirebaseAuth.instance;
+  bool _validate = false;
 
   @override
   void initState() {
@@ -80,14 +81,12 @@ class _LoginDetailState extends State<LoginDetail> {
               height: size.height * 0.01,
             ),
             // Nhập mật khẩu
-            TextFormField(
+            TextField(
               controller: passwordController,
               obscureText: true,
               inputFormatters: [
                 FilteringTextInputFormatter.deny(new RegExp('[\\.|\\,| -]'))
               ],
-              validator: (val) =>
-                  val.length < 6 ? "Mật khẩu phải lớn hơn 6 kí tự!" : null,
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.lock_rounded,
@@ -192,17 +191,27 @@ class _LoginDetailState extends State<LoginDetail> {
                       title: "Quên Mật Khẩu",
                       content: Column(
                         children: <Widget>[
-                          TextField(
+                          TextFormField(
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               icon: Icon(Icons.mail, color: kPrimaryColor),
                               labelText: 'Email',
                               hintText: 'Nhập email bạn đã đăng ký',
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black38),
+                                borderRadius: BorderRadius.circular(15),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: kPrimaryColor),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black38),
+                                borderRadius: BorderRadius.circular(15),
                               ),
                               focusColor: kPrimaryColor,
                               fillColor: kPrimaryColor,
@@ -221,11 +230,11 @@ class _LoginDetailState extends State<LoginDetail> {
                         DialogButton(
                           onPressed: () {
                             loginProvider.sendResetPassWord(_email);
-                            Navigator.of(context).pop();
+                            showAlertDialog(context);
                           },
                           child: Text(
                             "Gửi Email Reset Mật Khẩu",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: TextStyle(color: Colors.white, fontSize: 14),
                           ),
                           color: kPrimaryColor,
                         )
@@ -238,4 +247,31 @@ class _LoginDetailState extends State<LoginDetail> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // Create button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Email không hợp lệ"),
+    content: Text("Email không được để trống!"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
