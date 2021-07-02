@@ -48,6 +48,7 @@ Cho phép người dùng bình luận về món ăn, hiển thị thông tin bì
 - timeago: ^3.1.0
 - shared_preferences: ^2.0.6
 - flutter_launcher_icons: ^0.9.0
+- Firebase Firestore and Authentication
 
 ## Project Developer
 
