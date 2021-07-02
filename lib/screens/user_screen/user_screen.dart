@@ -6,6 +6,7 @@ import 'package:vcusines/notifier/home_screen_notifier.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'dart:io';
 
 class UserScreen extends StatefulWidget {
   static String id = 'UserScreen';
@@ -77,10 +78,10 @@ class _UserScreenState extends State<UserScreen> {
               //   height: size.height * 0.15,
               //   width: size.height * 0.15,
               //   child: InkWell(
-              //     onTap: () => authentication.getImage(),
+              //     onTap: () => getImage(),
               //     child: CircleAvatar(
-              //       // backgroundImage:
-              //       //     _image != null ? FileImage(_image) : NetworkImage(""),
+              //       backgroundImage:
+              //           image != null ? FileImage(image) : NetworkImage("null"),
               //       radius: 100,
               //     ),
               //   ),
