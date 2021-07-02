@@ -2,6 +2,11 @@
 
 A new Flutter application about Vietnamese Food.
 
+<center>
+<img src="assets/icons/app_logo.png"/>
+</center>
+
+
 ## Function: 
 ### Create account
 Create your account in VCuisines and discover many fantastic Viet Nam Cuisines
