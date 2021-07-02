@@ -49,6 +49,12 @@ Cho phép người dùng bình luận về món ăn, hiển thị thông tin bì
 - shared_preferences: ^2.0.6
 - flutter_launcher_icons: ^0.9.0
 
+## Project Developer
+
+- Nguyễn Thành Hiếu 
+- Trần Quốc Khánh
+- Nông Ngọc Xuân Hoàng
+
 ## License
 
 VCuisines is released under the Apache License 2.0. Copyright [2021] [See LICENSE](https://github.com/KSB-tqk/Vcusines/blob/master/LICENSE) for details
