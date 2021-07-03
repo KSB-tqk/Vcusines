@@ -18,6 +18,7 @@ class _LoginDetailState extends State<LoginDetail> {
   TextEditingController passwordController;
   TextEditingController resetPasswordMailController;
   final _formKey = GlobalKey<FormState>();
+  final _formKey2 = GlobalKey<FormState>();
   String _email;
   final auth = FirebaseAuth.instance;
   bool _validate = false;
@@ -26,6 +27,7 @@ class _LoginDetailState extends State<LoginDetail> {
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    resetPasswordMailController = TextEditingController();
     super.initState();
   }
 
@@ -186,51 +188,60 @@ class _LoginDetailState extends State<LoginDetail> {
             SizedBox(height: size.height * 0.02),
             TextButton(
                 onPressed: () {
+                  resetPasswordMailController.clear();
                   Alert(
                       context: context,
                       title: "Quên Mật Khẩu",
-                      content: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              icon: Icon(Icons.mail, color: kPrimaryColor),
-                              labelText: 'Email',
-                              hintText: 'Nhập email bạn đã đăng ký',
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black38),
-                                borderRadius: BorderRadius.circular(15),
+                      content: Form(
+                        key: _formKey2,
+                        child: Column(
+                          children: <Widget>[
+                            TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (val) => val.isNotEmpty
+                                  ? null
+                                  : "Email không được để trống!",
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.mail, color: kPrimaryColor),
+                                labelText: 'Email',
+                                hintText: 'Nhập email bạn đã đăng ký',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black38),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: kPrimaryColor),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black38),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusColor: kPrimaryColor,
+                                fillColor: kPrimaryColor,
+                                hoverColor: kPrimaryColor,
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: kPrimaryColor),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.red),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black38),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              focusColor: kPrimaryColor,
-                              fillColor: kPrimaryColor,
-                              hoverColor: kPrimaryColor,
+                              controller: resetPasswordMailController,
+                              onChanged: (value) {
+                                setState(() {
+                                  _email = value;
+                                });
+                              },
                             ),
-                            controller: resetPasswordMailController,
-                            onChanged: (value) {
-                              setState(() {
-                                _email = value;
-                              });
-                            },
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       buttons: [
                         DialogButton(
                           onPressed: () {
-                            loginProvider.sendResetPassWord(_email);
-                            showAlertDialog(context);
+                            if (_formKey2.currentState.validate()) {
+                              loginProvider.sendResetPassWord(_email);
+                              Navigator.pop(context);
+                            }
                           },
                           child: Text(
                             "Gửi Email Reset Mật Khẩu",
@@ -247,31 +258,4 @@ class _LoginDetailState extends State<LoginDetail> {
       ),
     );
   }
-}
-
-showAlertDialog(BuildContext context) {
-  // Create button
-  Widget okButton = TextButton(
-    child: Text("OK"),
-    onPressed: () {
-      Navigator.of(context).pop();
-    },
-  );
-
-  // Create AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Email không hợp lệ"),
-    content: Text("Email không được để trống!"),
-    actions: [
-      okButton,
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
 }

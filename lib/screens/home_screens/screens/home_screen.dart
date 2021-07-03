@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
     FoodNotifier topFoodNotifier =
-    Provider.of<FoodNotifier>(context, listen: false);
+        Provider.of<FoodNotifier>(context, listen: false);
     topFoodNotifier.getFoods(topFoodNotifier);
     super.didChangeDependencies();
   }
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     HomeScreenProvider homeScreenProvider =
-    Provider.of<HomeScreenProvider>(context);
+        Provider.of<HomeScreenProvider>(context);
     return Scaffold(
       body: homeScreenProvider.listOfPage[homeScreenProvider.currentIndex],
       bottomNavigationBar: Container(
